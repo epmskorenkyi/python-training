@@ -33,3 +33,7 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+.idea/*
+lesson1/task1.html
+lesson1/task1.pdf
+
