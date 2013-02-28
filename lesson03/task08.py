@@ -7,18 +7,24 @@ US-ASCII character set.
 """
 
 
-def unicode_to_ascii(string, errors='ignore'):
+def unicode_to_ascii(string):
+    """Encodes given string into a printable US-ASCII character set
+
+    :Parameters:
+        - string: string to encode
+
+    :Return:
+        encoded string
     """
-    Encodes given string into a printable US-ASCII character set
+    return string.encode('utf-8')
 
-    Arguments:
-        string - string to encode
-        errors - errors param for encode method (default 'ignore')
-    """
-    return string.encode('ascii', errors)
+test_str1 = u'a\u3042\xe4asdff'
+test_str2 = u'\ua000abcd\u07b4'
 
-print unicode_to_ascii(u'aあäasdff')
-print unicode_to_ascii(u'aあäasdff', 'backslashreplace')
+print test_str1
+print repr(test_str1)
+print repr(unicode_to_ascii(test_str1))
 
-print unicode_to_ascii(unichr(40960) + u'abcd' + unichr(1972))
-print unicode_to_ascii(unichr(40960) + u'abcd' + unichr(1972), 'replace')
+print test_str2
+print repr(test_str2)
+print repr(unicode_to_ascii(test_str2))

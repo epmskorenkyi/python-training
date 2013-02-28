@@ -11,17 +11,20 @@ and returns a string in the following format::
 and uses only str.join method
 """
 
+
 def params_list(*args, **kwargs):
-    """
-    Takes arbitrary number named arguments and return a string in following
+    """Takes arbitrary number named arguments and return a string in following
     format::
 
         pos1_value, pos2_value, pos3_value
         named1=named1_value, named2=named2_value
 
-    Arguments:
-        args - arbitrary positional arguments
-        kwargs - arbitrary named arguments
+    :Parameters:
+        - args: arbitrary positional arguments
+        - kwargs: arbitrary named arguments
+
+    :Return:
+        string with list of all params in specified format
     """
     positional = ', '.join(str(value) for value in args)
     named = ", ".join(["%s=%s" % (k, v) for k, v in kwargs.items()])

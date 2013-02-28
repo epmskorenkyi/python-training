@@ -22,21 +22,26 @@ def revert_params(string):
     into tuple of positional and a dictionary of named arguments and prints
     them
 
-    Arguments:
-        string - string in upper format
+    :Parameters:
+        - string: string in upper format
     """
-    params = str(string).split('\n')
+    args = named = 'None'
+    params = string.split('\n')
 
-    args = params[0].split(', ')
+    if len(params[0].strip()):
+        args = params[0].split(', ')
 
-    named = {}
-    named_string = params[1].split(', ')
-    for el in named_string:
-        pair = el.split('=')
-        named[pair[0]] = pair[1]
+    if len(params[1].strip()):
+        named = {}
+        named_string = params[1].split(', ')
+        for el in named_string:
+            pair = el.split('=')
+            named[pair[0]] = pair[1]
 
     print 'Positional: %s' % args
     print 'Named: %s' % named
 
 
 revert_params('pos1_value, pos2_value, pos3_value\nnamed1=named1_value, named2=named2_value')
+revert_params('pos1_value, pos2_value, pos3_value\n')
+revert_params('\nnamed1=named1_value, named2=named2_value')

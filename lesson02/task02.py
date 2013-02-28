@@ -65,7 +65,6 @@ def harmony(*args):
 
     :Exceptions:
         - TypeError: if parameter is not a number
-        - ValueError: if parameter is zero
     """
     denominator = 0
     for value in args:
@@ -75,7 +74,8 @@ def harmony(*args):
             raise TypeError('Params is not a number')
 
         if value == 0:
-            raise ValueError('Params can\'t be zero')
+            print 0
+            return
 
         denominator += 1 / value
 

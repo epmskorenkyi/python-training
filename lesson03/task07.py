@@ -8,18 +8,16 @@ it concatenated with the last 10 characters.
 
 
 def string_cutter(string):
-    """
-    Takes a string and returns the first 10 characters off it concatenated with
-    the last 10 characters
+    """Takes a string and returns the first 10 characters off it concatenated
+    with the last 10 characters
 
-    Arguments:
+    :Parameters:
         string - string for modification
+
+    :Return:
+        changed string
     """
-    length = len(string)
-    if length > 10:
-        return ''.join([string[0:10], string[length - 10:length]])
-    else:
-        return 'String is too short'
+    return string[:10] + string[-10:]
 
 print string_cutter('short')
 print string_cutter('1234567890 this will be cut 0987654321')
