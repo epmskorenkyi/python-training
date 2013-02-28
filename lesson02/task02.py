@@ -14,72 +14,81 @@ A module also calls its functions with some arguments.
 """
 
 
-def factorial(i):
-    """**factorial** function
+def factorial(num):
+    """Prints a factorial of an integer.
 
-    Prints factorial of given number
+    :Parameters:
+        - num: an integer;
 
-    Throws:
-        *ValueError* exception
+    :Return:
+        None
 
-    Arguments:
-        *i* - integer number for factorial
+    :Exceptions:
+        - ValueError: if a num is less than zero.
+        - TypeError: if a num is not an integer.
     """
-    def factorial_loop(n):
-        """**factorial_loop** function
-
-        Returns factorial of given number
-
-        Throws:
-            *ValueError* exception
-
-        Arguments:
-            *n* - integer number for factorial
-        """
-        if n > 0:
-            return n * factorial_loop(n - 1)
-        elif n == 0:
+    def factorial_loop(num):
+        if num > 0:
+            return num * factorial_loop(num - 1)
+        elif num == 0:
             return 1
         else:
-            raise ValueError("Value is less than zero.")
+            raise ValueError('Value is less than zero.')
 
-    if isinstance(i, int):
-        print factorial_loop(i)
+    if isinstance(num, int):
+        print factorial_loop(num)
     else:
-        raise ValueError("value is not integer.")
+        raise TypeError('Value is not integer.')
 
 
-def my_args(*args):
-    """**my_args** function
+def my_args(*args, **kwargs):
+    """Prints all given arguments
 
-    Prints all given arguments
+    :Parameters:
+        - args: position arguments;
+        - kwargs: named arguments
 
-    Arguments:
-        *args* - arbitrary number of arguments
-
+    :Return:
+        None
     """
-    print "my_args params: %s" % str(args)
+    print 'my_args params:\nposition: %s\nnamed: %s' % (str(args), kwargs)
 
 
 def harmony(*args):
-    """**harmony** function
+    """Prints harmonic medium value of given arguments
 
-    Prints harmonic medium value of given arguments
+    :Parameters:
+        - args: arbitrary number of arguments
 
-    Arguments:
-        *args* - arbitrary number of arguments
+    :Return:
+        None
 
+    :Exceptions:
+        - TypeError: if parameter is not a number
+        - ValueError: if parameter is zero
     """
-    print "Harmonic medium value of %s is %s" % \
-          (str(args), sum(args) / len(args))
+    denominator = 0
+    for value in args:
+        try:
+            value = float(value)
+        except ValueError:
+            raise TypeError('Params is not a number')
+
+        if value == 0:
+            raise ValueError('Params can\'t be zero')
+
+        denominator += 1 / value
+
+    print 'Harmonic medium value of %s is %s' % \
+          (str(args), len(args) / denominator)
 
 
 # functions calls
 factorial(0)
 factorial(5)
 
-my_args(1,2,3,4)
-my_args("First", "Second", "Third")
+my_args(1, 2, 3, 4, n1=11, n2=22, n3=33)
+my_args('First', 'Second', 'Third', n1=11, n2=22, n3=33)
 
-harmony(2, 2.0)
+harmony(1, 2, 4)
 harmony(2, 2.0, 5.67, 3.02, -1)

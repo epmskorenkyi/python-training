@@ -17,139 +17,121 @@ accordingly;
 A module also creates several MyNumberPrinter instances for showing its
 functionality.
 """
-from datetime import datetime
+
+
+from datetime import datetime, timedelta
 
 
 class MyNumberPrinter:
-    """**MyNumberPrinter** class
-
-    Provides functions related to given number
-    """
+    """Provides functions related to given number"""
 
     # time keys range
-    __time_keys = ["s", "m", "h", "d"]
+    __time_keys = ['s', 'm', 'h', 'd']
 
     def __init__(self, number):
-        """
-        Init class with given number
+        """Init class with given number
 
-        Arguments:
-            number - number for initialization
+        :Parameters:
+            - number: number for initialization
         """
-        self.n = number
+        self.number = number
 
     def me(self):
-        """
-        Prints a number
-        """
-        print self.n
+        """Prints a number itself"""
+        print self.number
 
     def factorial(self):
+        """Prints factorial of a number itself
+
+        :Exceptions:
+            - ValueError: if parameter is less than zero
+            - TypeError: if parameter is not integer
         """
-        Prints factorial of a number
-
-        Throws:
-            ValueError exception
-        """
-        def factorial_loop(n):
-            """
-            Returns factorial of a given number
-
-            Throws:
-                ValueError exception
-
-            Arguments:
-                n - integer number for factorial
-            """
-            if n > 0:
-                return n * factorial_loop(n - 1)
-            elif n == 0:
+        def factorial_loop(num):
+            if num > 0:
+                return num * factorial_loop(num - 1)
+            elif num == 0:
                 return 1
             else:
-                raise ValueError("Value is less than zero.")
+                raise ValueError('Value is less than zero.')
 
-        if isinstance(self.n, int):
-            print factorial_loop(self.n)
+        if isinstance(self.number, int):
+            print factorial_loop(self.number)
         else:
-            raise ValueError("value is not integer.")
+            raise TypeError('Value is not integer.')
 
     def string(self, value):
-        """
-        Prints a given string concatenated with itself number times
+        """Prints a given string concatenated with itself number times
 
-        Arguments:
-            value - string to concatenate and print
+        :Parameters:
+            - value: string to concatenate and print
         """
-        res = ""
-        for i in range(self.n):
-            res += value
-        print res
+        print str(value) * self.number
 
     def update(self, new_value):
-        """
-        Updates a number value
+        """Updates a number value
 
-        Arguments:
-            new_value - new number for modifications
+        :Parameters:
+            - new_value: new number for modifications
         """
-        self.n = new_value
-        print self.n
+        self.number = new_value
+        print self.number
 
     def time_in_past(self, letter):
-        """
-        Accepts a one letter string from s, m, h, d range and prints a time
+        """Accepts a one letter string from s, m, h, d range and prints a time
         that is a number of seconds, minutes, hours, or days in the past
         accordingly
 
-        Throws:
-            ValueError exception
-
-        Arguments:
-            letter - one letter string, a time key flag
+        :Parameters:
+            - letter: one letter string, a time key flag
+        :Exceptions:
+            - ValueError: if bad time key
         """
         if letter in self.__time_keys:
             now = datetime.now()
 
-            if letter == "d":
-                print "Time passed in days %s" % self.n
+            if letter == 'd':
+                days = now - timedelta(days=self.number)
+                print 'Time passed in days %s' % \
+                      days.strftime('%d %b %Y %H:%M:%S')
                 return
 
-            total_hours = self.n * 24 + now.hour
-            if letter == "h":
-                print "Time passed in hours %s" % total_hours
+            total_hours = self.number * 24 + now.hour
+            if letter == 'h':
+                print 'Time passed in hours %s' % total_hours
                 return
 
             total_minutes = total_hours * 60 + now.minute
-            if letter == "m":
-                print "Time passed in minutes %s" % total_minutes
+            if letter == 'm':
+                print 'Time passed in minutes %s' % total_minutes
                 return
 
             total_seconds = total_minutes * 60 + now.second
-            print "Time passed in seconds %s" % total_seconds
+            print 'Time passed in seconds %s' % total_seconds
         else:
-            raise ValueError("Bad time key. Not in [s, m, h, d] range.")
+            raise ValueError('Bad time key. Not in [s, m, h, d] range.')
 
 
 # show functionality
 obj_a = MyNumberPrinter(5)
 obj_a.me()
 obj_a.factorial()
-obj_a.string("test_")
+obj_a.string('test_')
 obj_a.update(6)
-obj_a.time_in_past("s")
-obj_a.time_in_past("m")
-obj_a.time_in_past("h")
-obj_a.time_in_past("d")
+obj_a.time_in_past('s')
+obj_a.time_in_past('m')
+obj_a.time_in_past('h')
+obj_a.time_in_past('d')
 
 obj_b = MyNumberPrinter(3)
 obj_b.me()
 obj_b.factorial()
-obj_b.string("test_")
+obj_b.string('test_')
 obj_b.update(15)
-obj_b.time_in_past("s")
-obj_b.time_in_past("m")
-obj_b.time_in_past("h")
-obj_b.time_in_past("d")
+obj_b.time_in_past('s')
+obj_b.time_in_past('m')
+obj_b.time_in_past('h')
+obj_b.time_in_past('d')
 
 MyNumberPrinter.me(obj_a)
 MyNumberPrinter.me(obj_b)
