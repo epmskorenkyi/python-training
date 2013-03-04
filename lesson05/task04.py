@@ -19,12 +19,5 @@ for x in xrange(100):
 
 output_file.write('Found %s vocals in first 100 lines.\n' % vocal)
 
-# data = input_file.read()
-#
-# trailing = len(re.findall(r'^(?=[^\n])\s+.*|.*(?=[^\n])\s+$', data, re.M))
-#
-# output_file.write('Found %s lines with trailing whitespaces\n' % trailing)
-# output_file.write(data)
-
 input_file.close()
 output_file.close()
