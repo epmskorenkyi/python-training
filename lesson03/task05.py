@@ -17,7 +17,7 @@ def last_element(string):
     :Return:
         result string
     """
-    return string[string.rfind(',') + 1:]
+    return string.rsplit(',', 1)[-1]
 
 print last_element('string without comma')
 print last_element('first,second,third,last')

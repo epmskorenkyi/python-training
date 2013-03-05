@@ -8,20 +8,18 @@ environment variables.
 """
 
 
-import os, sys, types, datetime
+import os, sys, types, datetime, string
 from time import strftime
 
 
-print len(sys.modules.items())
-print sys.modules.items()
-print 'Path to executable: %s' % sys.executable
-print 'Command line arguments: % s' % sys.argv
+print 'Path to executable: %s\n' % sys.executable
+print 'Command line arguments: % s\n' % sys.argv
 
 print 'Imported modules (%s):' % len(sys.modules.items())
-for module in sys.modules.items():
-    print module
+for key, val in sys.modules.items():
+    print string.ljust(key, 50), val
 
 print 'Environment variables (%s):' % len(os.environ.items())
 for key, val in os.environ.items():
-    print key, ': ', val
+    print string.ljust(key, 50), val
 
