@@ -15,10 +15,12 @@ input_file = open(input_pass, 'r')
 output_file = open(output_pass, 'w')
 
 trailing = 0
+regex = re.compile(r'^(?=[^\n])\s+|(?=[^\n])\s+$')
+trim = re.compile(r'^(?=[^\n])\s+|(?=[^\n])\s+$')
 for line in input_file.readlines():
-    if re.match(r'^(?=[^\n])\s+|(?=[^\n])\s+$', line):
+    if regex.match(line):
         trailing += 1
-        line = re.sub(r'^(?=[^\n])\s+|(?=[^\n])\s+$', '', line)
+        line = trim.sub('', line)
     output_file.write(line)
 
 output_file.write('Found %s lines with trailing whitespaces\n' % trailing)

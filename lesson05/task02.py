@@ -15,8 +15,9 @@ input_file = open(input_pass, 'r')
 output_file = open(output_pass, 'w')
 
 blank = 0
+regex = re.compile(r'^(?=[^\n])\s+\n')
 for line in input_file.readlines():
-    if re.match(r'^(?=[^\n])\s+\n', line):
+    if regex.match(line):
         blank += 1
     else:
         output_file.write(line)

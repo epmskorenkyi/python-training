@@ -14,8 +14,9 @@ input_file = open(input_pass, 'r')
 output_file = open(output_pass, 'w')
 
 vocal = 0
+regex = re.compile(r'[aeiouy]')
 for x in xrange(100):
-    vocal += len(re.findall(r'[aeiouy]', input_file.next()))
+    vocal += len(regex.findall(input_file.next()))
 
 output_file.write('Found %s vocals in first 100 lines.\n' % vocal)
 
