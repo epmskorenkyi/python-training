@@ -10,13 +10,11 @@ consisting of a mix of characters and integers shall count).
 import os, re
 
 
-input_pass = os.path.join(os.path.dirname(__file__), 'alice.txt')
-output_pass = os.path.join(os.path.dirname(__file__), 'alice09.txt')
-input_file = open(input_pass, 'r')
-output_file = open(output_pass, 'w')
+input_file = open(os.path.join(os.path.dirname(__file__), 'alice.txt'), 'r')
+output_file = open(os.path.join(os.path.dirname(__file__), 'alice09.txt'), 'w')
 
 words = 0
-search = re.compile(r'[a-zA-Z]+[a-zA-Z\d]|\d+[a-zA-Z]+[a-zA-Z\d]')
+search = re.compile(r'\d*[a-zA-Z]+[a-zA-Z\d]')
 for line in input_file.readlines():
     words += len(search.findall(line))
 

@@ -8,7 +8,10 @@ environment variables.
 """
 
 
-import os, sys, types, datetime, string
+import datetime
+import os
+import sys
+import types
 from time import strftime
 
 
@@ -17,9 +20,9 @@ print 'Command line arguments: % s\n' % sys.argv
 
 print 'Imported modules (%s):' % len(sys.modules.items())
 for key, val in sys.modules.items():
-    print string.ljust(key, 50), val
+    print key.ljust(50), val
 
 print 'Environment variables (%s):' % len(os.environ.items())
 for key, val in os.environ.items():
-    print string.ljust(key, 50), val
+    print key.ljust(50), val
 

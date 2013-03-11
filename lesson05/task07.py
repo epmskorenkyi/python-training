@@ -8,10 +8,8 @@ The same task as above but tripples shall not count (e.g. eee shall not count).
 import os, re
 
 
-input_pass = os.path.join(os.path.dirname(__file__), 'alice.txt')
-output_pass = os.path.join(os.path.dirname(__file__), 'alice07.txt')
-input_file = open(input_pass, 'r')
-output_file = open(output_pass, 'w')
+input_file = open(os.path.join(os.path.dirname(__file__), 'alice.txt'), 'r')
+output_file = open(os.path.join(os.path.dirname(__file__), 'alice07.txt'), 'w')
 
 count = 0
 search = re.compile(r'(?:^|(?<=(.)))(?!\1)(.)\2(?!\2)')

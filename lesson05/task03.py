@@ -9,21 +9,16 @@ modified lines.
 import os, re
 
 
-input_pass = os.path.join(os.path.dirname(__file__), 'alice.txt')
-output_pass = os.path.join(os.path.dirname(__file__), 'alice03.txt')
-input_file = open(input_pass, 'r')
-output_file = open(output_pass, 'w')
+output_file = open(os.path.join(os.path.dirname(__file__), 'alice03.txt'), 'w')
 
 trailing = 0
-regex = re.compile(r'^(?=[^\n])\s+|(?=[^\n])\s+$')
-trim = re.compile(r'^(?=[^\n])\s+|(?=[^\n])\s+$')
-for line in input_file.readlines():
-    if regex.match(line):
+match = re.compile(r'^\s+[^\s]|[^\s]\s+\n')
+replace = re.compile(r'^\s*(.+[^\s])\s*\n')
+for line in open(os.path.join(os.path.dirname(__file__), 'alice.txt'), 'r'):
+    if match.match(line):
         trailing += 1
-        line = trim.sub('', line)
+        line = replace.sub(r'\1\n', line)
     output_file.write(line)
 
 output_file.write('Found %s lines with trailing whitespaces\n' % trailing)
-
-input_file.close()
 output_file.close()
