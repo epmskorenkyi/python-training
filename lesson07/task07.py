@@ -32,6 +32,7 @@ def revert_lines(file):
             yield lines[0]
             break
 
-with open(sys.argv[1], 'r') as f:
-    for line in itertools.islice(revert_lines(f), int(sys.argv[2])):
-        print line
+if __name__ == '__main__':
+    with open(sys.argv[1], 'r') as f:
+        for line in itertools.islice(revert_lines(f), int(sys.argv[2])):
+            print line

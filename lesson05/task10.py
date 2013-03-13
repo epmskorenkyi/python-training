@@ -16,5 +16,3 @@ output_file = open(os.path.join(os.path.dirname(__file__), 'alice10.txt'), 'w')
 replace = re.subn(r'(Alice\s+)was', r'\1is', input_file.read())
 output_file.write(replace[0] + 'Modified %s phrases' % replace[1])
 
-input_file.close()
-output_file.close()

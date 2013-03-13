@@ -12,13 +12,11 @@ import os, re
 output_file = open(os.path.join(os.path.dirname(__file__), 'alice03.txt'), 'w')
 
 trailing = 0
-match = re.compile(r'^\s+[^\s]|[^\s]\s+\n')
-replace = re.compile(r'^\s*(.+[^\s])\s*\n')
+reg = re.compile(r'^\s*(.*?)\s*$')
 for line in open(os.path.join(os.path.dirname(__file__), 'alice.txt'), 'r'):
-    if match.match(line):
+    parsed_line = reg.sub(r'\1\n', line)
+    if len(line) > len(parsed_line):
         trailing += 1
-        line = replace.sub(r'\1\n', line)
-    output_file.write(line)
+    output_file.write(parsed_line)
 
 output_file.write('Found %s lines with trailing whitespaces\n' % trailing)
-output_file.close()

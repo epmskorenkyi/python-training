@@ -6,16 +6,17 @@ Consumer
 """
 
 
-import itertools
 from task05 import flatten
 
 
-def text_writter(text):
-    """Text writter generator"""
-    for line in text.splitlines():
-        print line
-        yield line
+def line_writer():
+    yield
+    while True:
+        print (yield)
 
-for flat in flatten(text_writter(open('/tmp/test1.txt', 'r').read()),
-                    text_writter(open('/tmp/test2.txt', 'r').read())):
-    pass
+if __name__ == '__main__':
+    gen = line_writer()
+    gen.next()
+
+    for line in flatten(open('/tmp/test1.txt'), open('/tmp/test2.txt')):
+        gen.send(line)

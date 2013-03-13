@@ -21,9 +21,8 @@ def iter_loop(num1, num2, num3):
                 2 * (num3 - num1) * num2)),
     )
 
-for pairs in iter_loop(1, 2, 3):
-    print pairs
-
+for values in iter_loop(1, 2, 3):
+    print ', '.join(str(val) for val in values)
 
 
 

@@ -20,11 +20,11 @@ def fibonacci():
 
 # first 99
 for num, value in enumerate(itertools.islice(fibonacci(), 99)):
-    print string.rjust(`num + 1`, 4), ':', value
+    print '%4d' % (num + 1), ':', value
 
 # from 100 to 1000 with interval 10
 for num, value in enumerate(itertools.islice(fibonacci(), 99, 1000, 10)):
-    print string.rjust(`100 + num * 10`, 4), ':', value
+    print '%4d' % (100 + num * 10), ':', value
 
 
 

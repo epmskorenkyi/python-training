@@ -13,10 +13,8 @@ output_file = open(os.path.join(os.path.dirname(__file__), 'alice04.txt'), 'w')
 
 vocal = 0
 regex = re.compile(r'[aeiouy]')
-for x in xrange(10):
+for x in xrange(100):
     vocal += len(regex.findall(input_file.readline()))
 
 output_file.write('Found %s vocals in first 100 lines.\n' % vocal)
 
-input_file.close()
-output_file.close()

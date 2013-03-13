@@ -15,10 +15,9 @@ def string_trans(string):
     :Return:
         a tuple
     """
-    return tuple(string[:10] + string[-10:])
+    return string[:10], string[-10:]
 
-parsed_str = string_trans('012345678909876543210')
-print ''.join(parsed_str[:10])
-print ''.join(parsed_str[-10:])
-print ''.join(parsed_str)
-
+res = string_trans('012345678909876543210')
+print res[0]
+print res[1]
+print res[0] + res[1]

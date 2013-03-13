@@ -26,8 +26,7 @@ def multiplier(range_limit):
         if range_limit < 0:
             raise ValueError('Value is less than zero.')
         else:
-            return [res for res in xrange(range_limit)
-                    if not res % 3 and not (res + 1) % 5]
+            return [res for res in xrange(0, range_limit, 3) if res % 5 == 4]
     else:
         raise TypeError('Value is not integer.')
 

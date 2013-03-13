@@ -6,7 +6,7 @@ Flatten
 """
 
 
-import itertools, collections
+import collections
 
 
 def flatten(*args):
@@ -22,5 +22,19 @@ def flatten(*args):
         if not isinstance(arg, collections.Iterable):
             raise TypeError('Not iterable params')
 
-    return itertools.izip_longest(*args)
+    items = [iter(arg) for arg in args]
+    while len(items):
+        to_remove = []
+        for item in items:
+            try:
+                yield item.next()
+            except StopIteration:
+                to_remove.append(item)
+        for rem in to_remove:
+            items.remove(rem)
 
+    # return itertools.chain(*[el for el in itertools.izip_longest(*args)])
+
+if __name__ == '__main__':
+    for el in flatten((1, 2, 3), (1, 2, 3, 4)):
+        print el

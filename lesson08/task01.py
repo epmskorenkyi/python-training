@@ -38,11 +38,11 @@ def div(a, b):
     """Divide numbers"""
     return float(a) / float(b)
 
-
-print add(1, 2)
-print sub(1, 2)
-print div(1, 2)
-print div(1, 0)
-print add(2, 2)
-print add(2, 2)
-print div(1, 4)
+if __name__ == '__main__':
+    print add(1, 2)
+    print sub(1, 2)
+    print div(1, 2)
+    print div(1, 0)
+    print add(2, 2)
+    print add(2, 2)
+    print div(1, 4)

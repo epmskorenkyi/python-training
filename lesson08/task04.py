@@ -34,9 +34,9 @@ class A(object):
     x = 10
     pass
 
-
-a = A
-a.test(b=10)
-a.other_test(a=1, c=5)
+if __name__ == '__main__':
+    a = A
+    a.test(b=10)
+    a.other_test(a=1, c=5)
 
 

@@ -16,7 +16,7 @@ def decorator_wrapper(word):
     return decorator
 
 
-@decorator_wrapper('Word!')
+@decorator_wrapper('World!')
 def hello(arg):
     """Prints it's argument"""
     print arg
