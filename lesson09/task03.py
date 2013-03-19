@@ -10,19 +10,21 @@ import sys
 import signal
 
 
-def signal_handler(signum, frame):
-    """Signal handler"""
-    if signum == signal.SIGINT:
-        sys.stdout.write('\nUser input cancelled.\n')
-    elif signum == signal.SIGALRM:
-        sys.stdout.write('.')
+def sigint_handler(signum, frame):
+    """SIGINT handler"""
+    sys.stdout.write('\nUser input cancelled.\n')
+
+
+def sigalrm_handler(signum, frame):
+    """SIGALRM handler"""
+    sys.stdout.write('.')
 
 
 if __name__ == "__main__":
-    for signum in [signal.SIGINT, signal.SIGALRM]:
-        signal.signal(signum, signal_handler)
+    signal.signal(signal.SIGINT, sigint_handler)
+    signal.signal(signal.SIGALRM, sigalrm_handler)
 
-    signal.setitimelr(signal.ITIMER_REAL, 1, 1)
+    signal.setitimer(signal.ITIMER_REAL, 1, 1)
 
     print raw_input()
 

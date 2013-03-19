@@ -23,7 +23,7 @@ def flatten(*args):
             raise TypeError('Not iterable params')
 
     items = [iter(arg) for arg in args]
-    while len(items):
+    while items:
         to_remove = []
         for item in items:
             try:

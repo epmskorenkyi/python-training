@@ -17,7 +17,7 @@ def string_trans(string):
     """
     return string[:10], string[-10:]
 
-res = string_trans('012345678909876543210')
-print res[0]
-print res[1]
-print res[0] + res[1]
+start, end = string_trans('012345678909876543210')
+print start
+print end
+print start + end
