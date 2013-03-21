@@ -10,9 +10,9 @@ class TruthTable(object):
     """Mixin class with overridden bool()"""
     def __nonzero__(self):
         if hasattr(self, '__true_values__'):
-            return hash(self) in self.__true_values__
+            return self in self.__true_values__
         elif hasattr(self, '__false_values__'):
-            return hash(self) not in self.__false_values__
+            return self not in self.__false_values__
         else:
             raise TypeError('TruthTable: parent class has no truth table.')
 
@@ -24,7 +24,7 @@ class TrueTest(TruthTable, int):
 
 class FalseTest(TruthTable, str):
     """Class with truth table including False values"""
-    __false_values__ = (hash('false'), hash('no'))
+    __false_values__ = ('false', 'no')
 
 
 if __name__ == '__main__':

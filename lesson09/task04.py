@@ -39,7 +39,7 @@ def signal_handler(signum, frame):
 
 if __name__ == "__main__":
     try:
-        for signum in [num for num in xrange(1, signal.NSIG)]:
+        for signum in xrange(1, signal.NSIG):
             signal.signal(signum, signal_handler)
     except RuntimeError, e:
         pass

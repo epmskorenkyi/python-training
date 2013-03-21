@@ -8,6 +8,7 @@ Memento
 
 import contextlib
 import time
+import timeit
 import sys
 
 
@@ -37,15 +38,19 @@ def memento(object, attribute, value):
 
 
 if __name__ == '__main__':
-    check_time = time.time()
-    with Memento(sys, 'exit', lambda x: 'Did you want to exit?'):
-        print sys.exit(1)
-    print "%.10f" % (time.time() - check_time)
+    snippet = """
+    with t.Memento(sys, 'exit', lambda x: 'Did you want to exit?'):
+        sys.exit(1)
+    """
+    print 'Using class:', timeit.timeit(stmt=snippet, number=100,
+                                        setup='import task03 as t')
 
-    check_time = time.time()
-    with memento(sys, 'exit', lambda x: 'Did you want to exit?'):
-        print sys.exit(1)
-    print "%.10f" % (time.time() - check_time)
+    snippet = """
+    with t.memento(sys, 'exit', lambda x: 'Did you want to exit?'):
+        sys.exit(1)
+    """
+    print 'Using contextlib:', timeit.timeit(stmt=snippet, number=100,
+                                             setup='import task03 as t')
 
 
 
